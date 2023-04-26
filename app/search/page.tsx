@@ -4,7 +4,33 @@ import SearchRestaurantCard from './components/SearchRestaurantCard';
 import SearchSideBar from './components/SearchSideBar';
 
 const prisma = new PrismaClient();
-const fetchRestaurantsByLocation = async (location: string | undefined) => {
+export interface ISearchParams {
+  location?: string;
+  cuisine?: string;
+  price?: string;
+}
+const fetchRestaurantsByLocation = async (searchParams: ISearchParams) => {
+  const where: any = {};
+
+  if (searchParams.location) {
+    const location = {
+      name: { equals: searchParams.location.toLocaleLowerCase() },
+    };
+    where.location = location;
+  }
+  if (searchParams.cuisine) {
+    const cuisine = {
+      name: { equals: searchParams.cuisine.toLocaleLowerCase() },
+    };
+    where.cuisine = cuisine;
+  }
+  if (searchParams.price) {
+    const price = {
+      equals: searchParams.price,
+    };
+    where.price = price;
+  }
+
   const select = {
     id: true,
     name: true,
@@ -15,30 +41,37 @@ const fetchRestaurantsByLocation = async (location: string | undefined) => {
     slug: true,
   };
 
-  if (!location) {
-    return await prisma.restaurant.findMany({ select });
-  }
   return await prisma.restaurant.findMany({
-    where: {
-      location: {
-        name: { equals: location.toLocaleLowerCase() },
-      },
-    },
+    where,
     select,
   });
+};
+
+const fetchLocations = async () => {
+  return prisma.location.findMany();
+};
+const fetchCuisines = async () => {
+  return await prisma.cuisine.findMany();
 };
 
 export default async function Search({
   searchParams,
 }: {
-  searchParams: { location: string };
+  searchParams: ISearchParams;
 }) {
-  const restaurants = await fetchRestaurantsByLocation(searchParams.location);
+  const restaurants = await fetchRestaurantsByLocation(searchParams);
+  const locations = await fetchLocations();
+  const cuisines = await fetchCuisines();
+
   return (
     <>
       <SearchHeader />
       <div className="flex py-4 m-auto w-2/3 justify-between items-start">
-        <SearchSideBar />
+        <SearchSideBar
+          locations={locations}
+          cuisines={cuisines}
+          searchParams={searchParams}
+        />
         <div className="w-5/6">
           {restaurants.length ? (
             restaurants.map(restaurant => (

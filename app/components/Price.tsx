@@ -7,7 +7,7 @@ export default function Price({ price }: { price: PRICE }) {
       case PRICE.CHEAP:
         return (
           <>
-            <span className=" font-semibold text-green-400">$$</span>
+            <span className="font-semibold text-green-400">$$</span>
             <span className="text-gray-400">$$</span>
           </>
         );
@@ -27,5 +27,5 @@ export default function Price({ price }: { price: PRICE }) {
     }
   };
 
-  return <p className="flex mr-3">{rederPrice()}</p>;
+  return <p className="flex justify-center">{rederPrice()}</p>;
 }
