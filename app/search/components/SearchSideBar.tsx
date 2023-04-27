@@ -1,17 +1,24 @@
-import { Cuisine, Location, PRICE } from '@prisma/client';
-import Link from 'next/link';
 import CuisineWidget from './CuisineWidget';
 import { ISearchParams } from '../page';
 import PriceWidget from './PriceWidget';
 import RegionWidget from './RegionWidget';
+
+export interface ILocations {
+  id: number;
+  name: string;
+}
+export interface ICuisines {
+  id: number;
+  name: string;
+}
 
 export default function SearchSideBar({
   locations,
   cuisines,
   searchParams,
 }: {
-  locations: Location[];
-  cuisines: Cuisine[];
+  locations: ILocations[];
+  cuisines: ICuisines[];
   searchParams: ISearchParams;
 }) {
   return (

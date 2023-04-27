@@ -2,22 +2,20 @@
 import { Location } from '@prisma/client';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import React from 'react';
 import { ISearchParams } from '../page';
+import { ILocations } from './SearchSideBar';
 
 export default function RegionWidget({
   locations,
   searchParams,
 }: {
-  locations: Location[];
+  locations: ILocations[];
   searchParams: ISearchParams;
 }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParam = useSearchParams();
   const currentSearchParams = new URLSearchParams(searchParam);
-
-  console.log('searchParams', searchParams.location);
 
   const handleClick = () => {
     currentSearchParams.delete('location');

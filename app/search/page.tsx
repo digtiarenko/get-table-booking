@@ -39,6 +39,7 @@ const fetchRestaurantsByLocation = async (searchParams: ISearchParams) => {
     cuisine: true,
     location: true,
     slug: true,
+    reviews: true,
   };
 
   return await prisma.restaurant.findMany({
@@ -48,10 +49,10 @@ const fetchRestaurantsByLocation = async (searchParams: ISearchParams) => {
 };
 
 const fetchLocations = async () => {
-  return prisma.location.findMany();
+  return prisma.location.findMany({ select: { name: true, id: true } });
 };
 const fetchCuisines = async () => {
-  return await prisma.cuisine.findMany();
+  return await prisma.cuisine.findMany({ select: { name: true, id: true } });
 };
 
 export default async function Search({

@@ -1,23 +1,20 @@
 'use client';
-import { Cuisine } from '@prisma/client';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import React from 'react';
 import { ISearchParams } from '../page';
+import { ICuisines } from './SearchSideBar';
 
 export default function CuisineWidget({
   cuisines,
   searchParams,
 }: {
-  cuisines: Cuisine[];
+  cuisines: ICuisines[];
   searchParams: ISearchParams;
 }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParam = useSearchParams();
   const current = new URLSearchParams(searchParam);
-
-  console.log(pathname, pathname);
 
   const handleClick = () => {
     current.delete('cuisine');
