@@ -26,8 +26,8 @@ export default function Stars({
         stars.push(EmptyStar);
       }
     }
-    return stars.map(star => (
-      <Image src={star} alt="" className="w-4 h-4 mr-1" />
+    return stars.map((star,i )=> (
+      <Image src={star} alt="" className="w-4 h-4 mr-1" key={i} />
     ));
   };
   return <div className="flex items-center">{renderStars()} </div>;

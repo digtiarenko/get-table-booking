@@ -1,9 +1,10 @@
 import { PrismaClient } from '@prisma/client';
+import prisma from '../../client/prisma';
 import SearchHeader from './components/SearchHeader';
 import SearchRestaurantCard from './components/SearchRestaurantCard';
 import SearchSideBar from './components/SearchSideBar';
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
 export interface ISearchParams {
   location?: string;
   cuisine?: string;

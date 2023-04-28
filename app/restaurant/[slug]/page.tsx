@@ -1,4 +1,6 @@
-import { PRICE, PrismaClient, Review } from '@prisma/client';
+import { PRICE, Review } from '@prisma/client';
+import { notFound } from 'next/navigation';
+import prisma from '../../../client/prisma';
 import Description from './components/Description';
 import Images from './components/Images';
 import Rating from './components/Rating';
@@ -16,7 +18,6 @@ interface IRestaurant {
   price: PRICE;
   reviews: Review[];
 }
-const prisma = new PrismaClient();
 
 const fetchRestaurantDetails = async (slug: string): Promise<IRestaurant> => {
   const restaurant = await prisma.restaurant.findUnique({
@@ -33,7 +34,7 @@ const fetchRestaurantDetails = async (slug: string): Promise<IRestaurant> => {
   });
 
   if (!restaurant) {
-    throw new Error('Restaurant not found');
+    notFound();
   }
   return restaurant;
 };
