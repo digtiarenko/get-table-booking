@@ -1,6 +1,5 @@
-'use client';
-
 import Link from 'next/link';
+import LoginGroup from './LoginGroup';
 
 export default function NavBar() {
   return (
@@ -9,14 +8,7 @@ export default function NavBar() {
         OpenTable
       </Link>
       <div>
-        <div className="flex">
-          <button className="bg-blue-400 text-white border p-1 px-4 rounded mr-3">
-            Sign in
-          </button>
-          <button className=" text-black border p-1 px-4 rounded">
-            Sign up
-          </button>
-        </div>
+        <LoginGroup />
       </div>
     </nav>
   );
