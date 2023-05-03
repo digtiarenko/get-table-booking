@@ -1,6 +1,12 @@
 import React from 'react';
 
-export default function Modal({ onClose }: { onClose: () => void }) {
+export default function Modal({
+  type,
+  onClose,
+}: {
+  type: string;
+  onClose: () => void;
+}) {
   return (
     <div onClick={onClose} className="relative z-10" aria-modal="true">
       <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
@@ -21,24 +27,24 @@ export default function Modal({ onClose }: { onClose: () => void }) {
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="currentColor"
                   className="h-6 w-6"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M6 18L18 6M6 6l12 12"
                   />
                 </svg>
               </button>
-              <div className="sm:flex sm:items-start">
+              <div className="sm:flex sm:items-center">
                 <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                   <h3
-                    className="text-base font-semibold leading-6 text-gray-900"
+                    className="text-center font-semibold leading-6 text-gray-900"
                     id="modal-title"
                   >
-                    Deactivate account
+                    {type === 'signin' ? 'Sign in' : 'Sign up'}
                   </h3>
                   <div className="mt-2">
                     <p className="text-sm text-gray-500">
