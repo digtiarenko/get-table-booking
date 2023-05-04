@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import prisma from '../../client/prisma';
 import SearchHeader from './components/SearchHeader';
 import SearchRestaurantCard from './components/SearchRestaurantCard';
