@@ -1,10 +1,8 @@
-import { PrismaClient } from '@prisma/client';
 import prisma from '../../client/prisma';
 import SearchHeader from './components/SearchHeader';
 import SearchRestaurantCard from './components/SearchRestaurantCard';
 import SearchSideBar from './components/SearchSideBar';
 
-// const prisma = new PrismaClient();
 export interface ISearchParams {
   location?: string;
   cuisine?: string;
@@ -31,6 +29,8 @@ const fetchRestaurantsByLocation = async (searchParams: ISearchParams) => {
     };
     where.price = price;
   }
+  console.log('searchParams', searchParams);
+  console.log('where', where);
 
   const select = {
     id: true,
@@ -68,6 +68,8 @@ export default async function Search({
   return (
     <>
       <SearchHeader />
+      <p>{JSON.stringify(searchParams)}</p>
+
       <div className="flex py-4 m-auto w-2/3 justify-between items-start">
         <SearchSideBar
           locations={locations}

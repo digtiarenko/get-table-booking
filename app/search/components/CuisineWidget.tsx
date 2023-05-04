@@ -20,6 +20,7 @@ export default function CuisineWidget({
     current.delete('cuisine');
     router.push(`${pathname}?${current}`);
   };
+  console.log('cuisine', current.get('cuisine'));
 
   return (
     <div className="border-b pb-4 mt-3 flex flex-col">
