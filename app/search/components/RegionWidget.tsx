@@ -16,7 +16,6 @@ export default function RegionWidget({
   const pathname = usePathname();
   const searchParam = useSearchParams();
   const currentSearchParams = new URLSearchParams(searchParam);
-  console.log('location', currentSearchParams.get('location'));
 
   const handleClick = () => {
     currentSearchParams.delete('location');

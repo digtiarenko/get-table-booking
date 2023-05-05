@@ -6,7 +6,6 @@ import Modal from './Modal';
 export default function LoginGroup() {
   const [open, setOpen] = useState('');
   const handleOpen = (value: string) => {
-    console.log(value);
     setOpen(value);
   };
   const handleClose = () => setOpen('');

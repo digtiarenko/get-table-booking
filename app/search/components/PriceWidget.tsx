@@ -20,7 +20,7 @@ export default function PriceWidget({
     currentSearchParams.delete('price');
     router.push(`${pathname}?${currentSearchParams}`);
   };
-  console.log('price', currentSearchParams.get('price'));
+  // console.log('price', currentSearchParams.get('price'));
   return (
     <div className="mt-3 pb-4">
       <div className="flex gap-2">
